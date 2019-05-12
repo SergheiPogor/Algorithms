@@ -1,0 +1,30 @@
+<script>
+    // calculate distance
+    // unidimension array
+    // 0 -> road
+    // 1 -> diamond
+    // 2 -> wall
+    // 9 -> robot
+    $road = [9, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+
+    $robot = 0;
+    $diamond = 9;
+    $distance = 0;
+    for($x = $robot+1; $x < $diamond; $x++){
+        $distance++;
+    }
+    document.write($distance);
+
+    document.write("<hr>");
+
+    $road = [1, 0, 0, 0, 0, 0, 0, 0, 0, 9];
+
+    $robot = 0;
+    $diamond = 9;
+    $distance = 0;
+    for ($x = $diamond - 1; $x > 0; $x--) {
+        $distance++;
+    }
+    document.write($distance);
+
+</script>

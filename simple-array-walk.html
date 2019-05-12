@@ -1,0 +1,26 @@
+<script>
+    // unidimension array
+    // 0 -> road
+    // 1 -> diamond
+    // 2 -> wall
+    $road = [0, 0, 0, 0, 0, 0, 0, 0, 1, 2];
+
+    function forward_walk(){
+    // forward - walk
+        for($i=0; $i <=9; $i++){
+            document.write($road[$i]);
+        }   
+    }
+
+    function backward_walk(){
+    // backward - walk
+        for ($i = 9; $i >= 0; $i--) {
+            document.write($road[$i]);
+        }
+    }
+
+/////////////////////////
+forward_walk();
+document.write("<br>")
+backward_walk();
+</script>

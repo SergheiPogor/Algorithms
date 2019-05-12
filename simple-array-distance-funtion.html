@@ -1,0 +1,91 @@
+<script>
+    // $road = [0, 0, 0, 0, 'r' ,0 , 0, 0, 0, 'd'];  
+    $road = ['d', '_', '_', '.', '.', '.', '_', '_', 'r', 0];  
+
+    // homework
+    $road = ['d', '_', '_', '.', 'r', '.', '_', 'd'];
+    // left . rigth  
+
+
+    $consume = 10;
+
+    function search_for($what){
+        for ($x = 0; $x < 10; $x++) {
+            if ($road[$x] == $what) {
+                // document.write($x);
+                return $x;
+            }
+        }
+    }
+
+    // logic
+    function where_is_robot(){
+        return search_for('r');        
+    }
+
+    function where_is_diamond(){
+        return search_for('d');
+    }    
+
+    function distance( $x_from, $x_to ){
+        $distance = 0;
+
+        if($x_from < $x_to){
+            for ($x = $x_from + 1; $x < $x_to; $x++) {
+                $distance++;
+            }
+        }
+        if($x_from > $x_to) {
+            for ($x = $x_from - 1; $x > $x_to; $x--) {
+                $distance++;
+            }
+        }      
+        return $distance;
+    }
+  
+    function energy($x_from, $x_to) {
+        $energy = 0;
+
+        if ($x_from < $x_to) {
+            for ($x = $x_from + 1; $x < $x_to; $x++) {
+
+                if ($road[$x] == '_') {
+                    $energy += 1.5 * $consume;
+                }
+                if ($road[$x] == '.') {
+                    $energy += $consume;
+                }
+                
+            }
+        }
+        if ($x_from > $x_to) {
+            for ($x = $x_from - 1; $x > $x_to; $x--) {
+
+                if ($road[$x] == '_') {
+                    $energy += 1.5 * $consume;
+                }
+                if ($road[$x] == '.') {
+                    $energy += $consume;
+                }
+
+            }
+        }
+        return $energy;
+    }
+
+
+    $robot = where_is_robot();
+    $diamond = where_is_diamond();
+    $distance = distance($robot, $diamond);
+    $energy = energy($robot, $diamond);
+
+    document.write("Robot: " + $robot);
+    document.write("<br>");
+    document.write("Diamond: " + $diamond);
+    document.write("<br>");
+    document.write("Distance: " + $distance);
+    document.write("<br>");
+    document.write("Energy: " + $energy);
+
+
+</script>
