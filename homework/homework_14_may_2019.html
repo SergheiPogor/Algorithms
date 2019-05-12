@@ -1,0 +1,115 @@
+<script>
+    // homework
+    $road = ['d', 0, 1, 0, 1, 'r', 1, 2, 1, 'd'];
+
+    $consume = 10;
+    // LOGIC
+    function search_for($what, $direction){
+        if ($direction == 'right_left') {
+            for ($x = 9; $x > 0; $x--) {
+                if ($road[$x] == $what) {
+                    return $x;
+                }
+            }
+        }else{ // if no $direction -> default left->right
+             for ($x = 0; $x < 10; $x++) {
+                if ($road[$x] == $what) {
+                    return $x;
+                }
+            }
+        }
+    }
+    
+    function where_is_robot(){
+        return search_for('r');  
+    }
+    function where_is_diamond($direction){
+        return search_for('d', $direction);
+    } 
+
+    function distance($x_from, $x_to){
+        $distance = 0;
+
+        if($x_from < $x_to){
+            for ($x = $x_from + 1; $x < $x_to; $x++) {
+                $distance++;
+            }
+        }
+        if($x_from > $x_to) {
+            for ($x = $x_from - 1; $x > $x_to; $x--) {
+                $distance++;
+            }
+        }      
+        return $distance;
+    }
+
+    function energy($x_from, $x_to) {
+        $energy = 0;
+
+        if ($x_from < $x_to) {
+            for ($x = $x_from + 1; $x < $x_to; $x++) {
+                if (isNaN($road[$x])) {
+                    // is not number -> default 10
+                }else{
+                    if ($road[$x] < $road[$x + 1]) {
+                        $energy += 1.2 * $consume; // on the hill
+                    }
+                    if ($road[$x] > $road[$x + 1]) {
+                        $energy += 0.5 * $consume; // downhill
+                    }
+
+                }       
+            }
+        }
+        if ($x_from > $x_to) {
+            for ($x = $x_from - 1; $x > $x_to; $x--) {
+                 if (isNaN($road[$x])) {
+                    // is not number
+                } else {
+                    if ($road[$x] < $road[$x + 1]) {
+                        $energy += 1.2 * $consume; // on the hill
+                    }
+                    if ($road[$x] > $road[$x + 1]) {
+                        $energy += 0.5 * $consume; // downhill
+                    }
+
+                }    
+            }
+        }
+        return $energy;
+    }
+
+    $robot = where_is_robot();
+    $diamond_left_right = where_is_diamond('left_right');
+    $diamond_right_left = where_is_diamond('right_left');
+    $distance_right_left = distance($robot, $diamond_left_right);
+    $distance_left_right = distance($robot, $diamond_right_left);
+    $energy_right_left = energy($robot, $diamond_left_right);
+    $energy_left_right = energy($robot, $diamond_right_left);
+
+
+    document.write("LEFT->RIGHT: " + $diamond_left_right);
+    document.write("<br>"); 
+    document.write("RIGHT->LEFT: " + $diamond_right_left);
+    document.write("<br>");
+    document.write("Robot: " + $robot);
+    document.write("<br>");
+    document.write("Distance Left->Right: " + $distance_left_right);
+    document.write("<br>");
+    document.write("Distance Right-Left: " + $distance_right_left);
+    document.write("<br>");
+    document.write("Energy Left->Right: " + $energy_left_right);
+    document.write("<br>");
+    document.write("Energy Right->Left: " + $energy_right_left);
+
+    if ($energy_right_left > $energy_left_right) {
+        document.write("<h2>Lowest Energy Cost: Left -> Rigth</h2>");
+    }
+    if ($energy_right_left < $energy_left_right) {
+        document.write("<h2>Lowest Energy Cost: Rigth -> Left</h2>");
+    }
+    if($energy_right_left == $energy_left_right) {
+        document.write("<h2>Same Cost for both directions</h2>");
+    }
+
+</script>
