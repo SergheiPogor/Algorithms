@@ -1,0 +1,39 @@
+<script>
+/*
+
+bidimension array
+function / return
+function / recursion
+
+FF - flood File
+BT - Back Track
+*/
+
+$map        = [0,0,0,0,0,'x',0,0,'#',0];
+$visited    = [0,0,0,0,0, 0, 0,0, 0, 0];
+$steps      = [0,0,0,0,0, 0, 0,0, 0, 0]; // '<'  '>'  
+
+$path       = []; // path to resource
+
+function find($start) {
+    if ($visited[$start] == 1)
+        return 0;
+
+    // DEFEND BORDERS
+    if ($start < 0 || $start >= 10) return 0; 
+    
+    $visited[$start] = 1;
+    if ($map[$start] == '#') 
+        return $map[$start];
+
+    $found = find($start - 1) || find($start + 1);
+    if ($found != 0)
+        // document.write(">>>: " + $start + '<br>');
+        $path.push($start);    
+    return $found;
+}
+
+$found = find(5);
+
+console.log($path.reverse());
+</script>

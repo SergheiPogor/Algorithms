@@ -1,0 +1,31 @@
+<script>
+/*
+
+bidimension array
+function / return
+function / recursion
+
+FF - flood File
+BT - Back Track
+*/
+
+$map    = ['','^','@'];
+
+$start  = 1;
+
+function get_left($start){
+    return $map[$start - 1]; 
+}
+function get_right($start){
+    return $map[$start + 1]; 
+}
+
+function get($start) {
+    return get_left($start) || get_right($start);
+}
+
+
+document.write(get($start));
+
+
+</script>
