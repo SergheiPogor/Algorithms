@@ -1,0 +1,20 @@
+<script>
+
+// functie ce leaga 2 noduri
+
+
+function link(n1,n2){ // n1 -> n2
+    n1.to = n2;
+    n2.from = n1;
+}
+
+// legam cateva noduri
+city_1 = {name: "Chisinau"};
+city_2 = {name: "Balti"};
+city_3 = {name: "Orhei"};
+
+link(city_1, city_3);
+link(city_3,city_2);
+
+console.log(city_1)
+</script>

@@ -1,0 +1,37 @@
+<script>
+    // legatura EDGE
+    road = {
+        distance: 50,
+        good: false,
+    }
+
+    // nodul 1 VERTEX
+    city_a = {
+        name: "Chisinau",
+        population: 750000,
+    }
+
+    // nodul 2 VERTEX
+    city_b = {
+        name: "Orhei",
+        population: 200000,
+    }
+
+    // legaturile 
+    city_a.road = road;
+    road.from = city_a;
+
+    city_b.road = road;
+    road.to = city_b;
+
+
+    document.write(city_a.name + " " + city_a.population + "<br>")
+    document.write(city_b.name + " " + city_b.population + "<br>")
+
+    // parcugen drumul din A in B
+    document.write(city_a.road.to.name)
+
+    // parcugen drumul din B in A
+    document.write(city_b.road.from.name)
+
+</script>

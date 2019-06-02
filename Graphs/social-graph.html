@@ -1,0 +1,20 @@
+<script>
+    me = {name: "Dorin"}
+    you = {name: "J Lo"}
+    her = {name: "Braxty"}
+
+
+    // legaturi
+
+    me.friend = you
+
+    you.friend_from = me
+    you.friend_to = her
+
+    her.friend = you
+
+    document.write(me.friend.friend_to.name + "<br>")
+    document.write(her.friend.friend_from.name + "<br>")
+
+
+</script>

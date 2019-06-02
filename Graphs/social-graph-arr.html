@@ -1,0 +1,76 @@
+<script>
+
+nodes = [
+    { name: "Chisinau"},    // 0
+    { name: "Orhei" },      // 1
+    { name: "Balti" }       // 2
+];
+
+// nodes = [
+//     [ 'name' => "Chisinau" },    // 0
+//     [ name: "Orhei" },      // 1
+//     [ name: "Balti" }       // 2
+// ];
+
+
+//////
+$nodes = [
+    { name: "Chisinau"},
+    { name: "Orhei" },
+    { name: "Balti" },
+    { name: "Strasheni"}
+];
+
+$roads = [
+    { from: 0, to: 1, distance: 50},
+    { from: 1, to: 2, distance: 100 },
+    { from: 0, to: 3, distance: 25 },
+    { from: 2, to: 3, distance: 150 }
+];
+
+// function ("Chisinau", "Straseni") -> true/false
+// * afiseze si distanta 
+
+// 2) functie () de afisat orasele care sunt conectate prin cel mai scurt drum
+// se da un oras si o raaafunction ("Chisinau", 60) -> toate orasele din raza respective
+
+
+links = [
+    {from: 0, to: 1},
+    {from: 1, to: 2},
+];
+
+
+
+// returneaza index oras dupa denumire
+function city_index(name) {
+    for(i = 0, i < nodes.length; i++;){
+        if (nodes[i].name == name ) {
+            return i;
+        }
+    };
+}
+
+function linked_city(name) {
+
+    index = city_index(name);
+
+    for (i = 0, i < links.length; i++;) {
+        if (links[i].from == index) {
+            return nodes[links[i].to];
+
+        }
+    };
+}
+
+
+console.log(linked_city('Balti'));
+
+// Chisinau - Balti
+
+// document.write(nodes[0] );
+
+// document.write(city("Chisinau"));
+
+
+</script>
