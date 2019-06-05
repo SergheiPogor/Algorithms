@@ -26,4 +26,23 @@ function rotate($figures)
     return $figures;
 }
 
+function rotate($n, $figures)
+{
+    $figures_90deg = array();
+     
+    foreach ($figures[$n] as $row => $columns) {
+        foreach ($columns as $row2 => $column2) {
+            $figures_90deg[$row2][$row] = $column2;
+        }
+    }
+    # code...
+    
+    print_r($figures[$n]);
+    print "<hr>";
+    print_r($figures_90deg);
+
+    $figures = $figures_90deg;
+    return $figures;
+}
+
 print_r (rotate($figures['0']));
